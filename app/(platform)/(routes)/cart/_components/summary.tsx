@@ -14,8 +14,7 @@ const Summary = () => {
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
   const totalPrice = items.reduce(
-    (total, item) => total + Number(item.price),
-    0
+    (total, item) => total + Number(item.price), 0
   );
 
   const afterSuccess = async () => {
@@ -67,8 +66,7 @@ const Summary = () => {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
-        productIds: items.map((item) => item.id),
-        total: totalPrice,
+        productIds: items.map((item) => item.id)
       }
     );
 

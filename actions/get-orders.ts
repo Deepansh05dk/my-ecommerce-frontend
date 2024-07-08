@@ -1,11 +1,14 @@
-import { Order, Product } from "@/types";
-import axios from "axios";
+import { Order } from "@/types";
+
 
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/admin/orders`;
 
 const getOrders = async (): Promise<Order[]> => {
-  const res = await axios.get(URL);
-  return res.data;
+  const res = await fetch(URL, {
+    cache: 'no-store'
+  })
+  const orders = await res.json();
+  return orders
 };
 
 export default getOrders;

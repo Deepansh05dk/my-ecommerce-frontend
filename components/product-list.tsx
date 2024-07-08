@@ -4,12 +4,14 @@ import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import { useEffect, useState } from "react";
 
+
 interface ProductListProps {
   title: string;
   items: Product[];
+  revalidateTag: (tag: string) => void
 }
 
-const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
+const ProductList: React.FC<ProductListProps> = ({ title, items, revalidateTag }) => {
   const [productItems, setProductItems] = useState(items)
   useEffect(() => {
     const sse = new EventSource(`${process.env.NEXT_PUBLIC_API_URL}/sse`)
@@ -29,6 +31,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
             productItems.filter((item) => item.id !== parsedData.product.id)
           )
         }
+        revalidateTag('update_products')
       }
 
     }

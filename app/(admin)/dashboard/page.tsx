@@ -1,23 +1,14 @@
 
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import getOrders from "@/actions/get-orders";
-import { Badge } from "@/components/ui/badge";
 import { ProductsTable } from "./_components/products-table";
 import getProducts from "@/actions/get-products";
 import { OrdersTable } from "./_components/orders-table";
 
 
-export default async function  DashboardPage() {
-  const products=await getProducts()
-  const orders=await getOrders()
+export default async function DashboardPage() {
+  const products = await getProducts()
+  const orders = await getOrders()
 
   return (
     <div className="p-4">
