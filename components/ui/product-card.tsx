@@ -5,7 +5,6 @@ import Image from "next/image";
 import IconButton from "@/components/ui/icon-button";
 import { ShoppingCart } from "lucide-react";
 import Currency from "@/components/ui/currency";
-import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import useCart from "@/hooks/use-cart";
 
@@ -15,10 +14,6 @@ interface ProductCard {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const cart = useCart();
-  const router = useRouter();
-  const handleClick = () => {
-    router.push(`/product/${data?.id}`);
-  };
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -27,7 +22,6 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
   return (
     <div
-      onClick={handleClick}
       className="p-3 space-y-4 bg-white border cursor-pointer group rounded-xl"
     >
       {/* Images and Actions */}
