@@ -8,10 +8,9 @@ import { useEffect, useState } from "react";
 interface ProductListProps {
   title: string;
   items: Product[];
-  revalidateTag: (tag: string) => void
 }
 
-const ProductList: React.FC<ProductListProps> = ({ title, items, revalidateTag }) => {
+const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
   const [productItems, setProductItems] = useState(items)
   useEffect(() => {
     const sse = new EventSource(`${process.env.NEXT_PUBLIC_API_URL}/sse`)
@@ -31,7 +30,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items, revalidateTag }
             productItems.filter((item) => item.id !== parsedData.product.id)
           )
         }
-        revalidateTag('update_products')
+
       }
 
     }
