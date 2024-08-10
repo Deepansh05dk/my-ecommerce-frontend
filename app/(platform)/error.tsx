@@ -3,7 +3,7 @@
 export default function Error() {
     return (
         <div>
-            <h2>Something went wrong!</h2>
+            <h2 className="w-full h-400px text-center">Something went wrong! Refresh Once </h2>
         </div>
     )
 }
